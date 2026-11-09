@@ -6,9 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>WiFi Bridge – Web Installer</title>
-<meta name="description" content="Install WiFi Bridge on a WT32-ETH01 or other ESP32 Ethernet board from your browser: put any wired-only device on Wi-Fi.">
+<meta name="description" content="Install WiFi Bridge on a WT32-ETH01 or another ESP32 Ethernet board from your browser, and put a wired-only device on Wi-Fi.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232563eb'/%3E%3Cpath d='M8 13a11 11 0 0 1 16 0M11 16.5a6.5 6.5 0 0 1 10 0' stroke='white' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3Crect x='11' y='20' width='10' height='6' rx='1.5' fill='white'/%3E%3C/svg%3E">
-<script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+<script type="module" src="https://unpkg.com/esp-web-tools@10.4.0/dist/web/install-button.js?module"></script>
 <style>
   :root {
     --bg: #f7f8fa;
@@ -200,7 +200,7 @@
     <div class="wrap">
       <div class="badge pending" id="version-badge"><span class="dot"></span><span id="version-text">Loading firmware information…</span></div>
       <h1>Put any wired device on Wi-Fi</h1>
-      <p class="lead">WiFi Bridge turns a WT32-ETH01 or another ESP32 Ethernet board into a Wi-Fi client that bridges to its Ethernet port. Printers, NAS boxes, consoles and other wired-only devices join your wireless network without new cables.</p>
+      <p class="lead">WiFi Bridge turns a WT32-ETH01 or another ESP32 Ethernet board into a bridge between your Wi-Fi network and the board's Ethernet port. Printers, NAS devices, game consoles, and other wired-only devices join your Wi-Fi network without new cables.</p>
 
       <div class="install-card" id="install-card">
         <esp-web-install-button manifest="manifest.json" id="installer">
@@ -209,16 +209,16 @@
             <span id="install-label">Install WiFi Bridge</span>
           </button>
           <div slot="unsupported" class="callout">
-            <strong>This browser can't flash devices.</strong> Installing needs Web Serial, which is available in desktop Chrome, Edge and Opera. Open this page in one of those browsers.
+            <strong>This browser can't install firmware.</strong> The installer needs Web Serial, which desktop Chrome, Edge, and Opera support. Open this page in one of those browsers.
           </div>
           <div slot="not-allowed" class="callout">
-            <strong>This page must be served over HTTPS</strong> (or from <code>localhost</code>) to access serial ports.
+            <strong>This page can't access serial ports.</strong> Open it over HTTPS or from <code>localhost</code>.
           </div>
         </esp-web-install-button>
-        <p class="note">Connect the board over USB first (see <a href="#install">the steps below</a>), then click Install and pick its serial port. On a first install, choose <em>Erase device</em>.</p>
+        <p class="note">Connect the board over USB first (see <a href="#install">the steps below</a>). Then click <strong>Install</strong> and choose its serial port. On a first install, select <strong>Erase device</strong>.</p>
         <div class="links">
           <a href="#" data-link="release" id="release-link">Release notes</a>
-          <a href="#" data-link="ota" id="ota-link">Download OTA image</a>
+          <a href="#" data-link="ota" id="ota-link">Download the update file</a>
           <a href="firmware/SHA256SUMS" id="sums-link">SHA256SUMS</a>
         </div>
       </div>
@@ -228,22 +228,22 @@
   <section id="about">
     <div class="wrap">
       <h2>What it does</h2>
-      <p class="sub">A small, dedicated bridge: one wired device on one side, your Wi-Fi network on the other.</p>
+      <p class="sub">The bridge connects one wired device on one side to your Wi-Fi network on the other.</p>
       <div class="grid">
         <div class="card">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 8.8a15 15 0 0 1 20 0M5 12.6a10 10 0 0 1 14 0M8.5 16.2a5 5 0 0 1 7 0"/><circle cx="12" cy="20" r="1"/></svg></div>
-          <h3>Wi-Fi client to Ethernet</h3>
-          <p>The board joins your Wi-Fi network as a client and forwards traffic to and from the device plugged into its Ethernet port.</p>
+          <h3>Wi-Fi to Ethernet</h3>
+          <p>The bridge joins your Wi-Fi network as a client and forwards traffic to and from the device plugged into its Ethernet port.</p>
         </div>
         <div class="card">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
-          <h3>Same LAN, same addresses</h3>
-          <p>The wired device gets its address from your router's DHCP and is reachable from the rest of the network like any other client.</p>
+          <h3>Same network, same addresses</h3>
+          <p>The wired device gets its IP address from your router, and other devices on your network can reach it like any other client.</p>
         </div>
         <div class="card">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M21 3v6h-6"/><path d="M21 3l-9 9"/></svg></div>
-          <h3>Web setup and OTA updates</h3>
-          <p>Configure Wi-Fi from a setup page on your phone or laptop, watch status, and install updates from the browser without a cable.</p>
+          <h3>Web setup and updates</h3>
+          <p>Set up Wi-Fi from your phone or laptop, check the bridge's status, and install firmware updates from your browser without a cable.</p>
         </div>
       </div>
       <div class="diagram" aria-label="Wired device connects by Ethernet to WiFi Bridge, which connects by Wi-Fi to your router">
@@ -259,16 +259,17 @@
   <section id="boards">
     <div class="wrap">
       <h2>Supported boards</h2>
-      <p class="sub">One firmware image runs on all of these. It starts with the WT32-ETH01 Ethernet settings; pick a different board later in the device's web interface.</p>
+      <p class="sub">One firmware image runs on all of these boards. It starts with the WT32-ETH01 Ethernet settings. To use a different board, choose it on the <strong>Ethernet</strong> tab of the bridge's page after you install.</p>
       <div class="table-card">
         <table>
           <thead><tr><th>Board</th><th>Ethernet PHY</th><th>How to connect for flashing</th></tr></thead>
           <tbody>
-            <tr><td><strong>WT32-ETH01</strong><span class="tag">Default</span></td><td>LAN8720</td><td>No USB port: use a 3.3 V USB-UART adapter and hold IO0 low (see below)</td></tr>
-            <tr><td><strong>Olimex ESP32-POE / ESP32-POE-ISO</strong></td><td>LAN8720</td><td>Micro-USB, automatic download mode</td></tr>
-            <tr><td><strong>Olimex ESP32-Gateway</strong></td><td>LAN8720</td><td>Micro-USB, automatic download mode</td></tr>
-            <tr><td><strong>Espressif ESP32-Ethernet-Kit</strong></td><td>IP101</td><td>Micro-USB, automatic download mode</td></tr>
-            <tr><td><strong>wESP32</strong></td><td>LAN8720 / RTL8201</td><td>Programming header with a USB-UART adapter that has auto-reset (for example wESP32-Prog)</td></tr>
+            <tr><td><strong>WT32-ETH01</strong><span class="tag">Default</span></td><td>LAN8720</td><td>No USB port. Use a 3.3 V USB-serial adapter and hold <code>IO0</code> low (see below).</td></tr>
+            <tr><td><strong>Olimex ESP32-POE / ESP32-POE-ISO</strong></td><td>LAN8720</td><td>Micro-USB; enters download mode automatically</td></tr>
+            <tr><td><strong>Olimex ESP32-Gateway</strong></td><td>LAN8720</td><td>Micro-USB; enters download mode automatically</td></tr>
+            <tr><td><strong>Espressif ESP32-Ethernet-Kit</strong></td><td>IP101</td><td>Micro-USB; enters download mode automatically</td></tr>
+            <tr><td><strong>wESP32</strong></td><td>LAN8720 / RTL8201</td><td>Programming header, with a USB-serial adapter that has auto-reset (for example, wESP32-Prog)</td></tr>
+            <tr><td><strong>LilyGO T-Internet-POE</strong></td><td>LAN8720</td><td>USB-serial adapter on the programming header</td></tr>
           </tbody>
         </table>
       </div>
@@ -278,13 +279,13 @@
   <section id="install">
     <div class="wrap">
       <h2>Install</h2>
-      <p class="sub">You need a computer with desktop Chrome, Edge or Opera, a USB cable or USB-UART adapter, and a couple of minutes.</p>
+      <p class="sub">You need a computer with desktop Chrome, Edge, or Opera, and a USB cable or USB-serial adapter. Installing takes a few minutes.</p>
       <ol class="steps">
         <li>
           <h3>Connect the board</h3>
-          <p><strong>Boards with USB</strong> (Olimex, ESP32-Ethernet-Kit): plug the board into your computer. The installer puts it into download mode for you.</p>
-          <div class="callout"><strong>Olimex ESP32-POE (non-ISO):</strong> do not power it from PoE while it is connected to your computer by USB. Only the ISO variant is galvanically isolated.</div>
-          <p style="margin-top:14px"><strong>WT32-ETH01</strong> has no USB port. Connect a USB-UART adapter set to 3.3 V logic:</p>
+          <p><strong>Boards with USB</strong> (Olimex, ESP32-Ethernet-Kit): Plug the board into your computer. The installer puts it into download mode for you.</p>
+          <div class="callout"><strong>Olimex ESP32-POE (non-ISO):</strong> Don't power the board from PoE while it's connected to your computer by USB. Only the ISO variant is electrically isolated.</div>
+          <p style="margin-top:14px"><strong>WT32-ETH01</strong> has no USB port. Connect a USB-serial adapter set to 3.3 V logic:</p>
           <div class="table-card wiring">
             <table>
               <thead><tr><th>Adapter</th><th>WT32-ETH01</th></tr></thead>
@@ -292,24 +293,24 @@
                 <tr><td>TX</td><td><code>RX0</code></td></tr>
                 <tr><td>RX</td><td><code>TX0</code></td></tr>
                 <tr><td>GND</td><td><code>GND</code></td></tr>
-                <tr><td>5V</td><td><code>5V</code> (or 3.3 V to <code>3V3</code> if the adapter can supply 500 mA)</td></tr>
-                <tr><td>GND (jumper)</td><td><code>IO0</code>, held to GND while the board powers up or resets</td></tr>
+                <tr><td>5V</td><td><code>5V</code> (or 3.3 V to <code>3V3</code>, if the adapter can supply 500 mA)</td></tr>
+                <tr><td>GND (jumper)</td><td><code>IO0</code>, held to GND while the board starts or resets</td></tr>
               </tbody>
             </table>
           </div>
-          <p>The ESP32 only enters its bootloader if <code>IO0</code> is low at reset. Connect <code>IO0</code> to <code>GND</code>, then power the board on (or briefly short <code>EN</code> to <code>GND</code>). Leave the jumper in place until flashing finishes.</p>
+          <p>The ESP32 enters its bootloader only if <code>IO0</code> is low at reset. Connect <code>IO0</code> to <code>GND</code>, and then turn on the board (or briefly connect <code>EN</code> to <code>GND</code>). Leave the jumper in place until the installation finishes.</p>
         </li>
         <li>
           <h3>Click Install</h3>
-          <p>Click <strong>Install WiFi Bridge</strong> at the top of this page and choose the serial port (often <em>CP2102</em>, <em>CH340</em> or <em>FT232</em>). If the port is missing, install the driver for your adapter; on Linux, add your user to the <code>dialout</code> group.</p>
+          <p>At the top of this page, click <strong>Install WiFi Bridge</strong> and choose the serial port (often <em>CP2102</em>, <em>CH340</em>, or <em>FT232</em>). If the port isn't listed, install the driver for your adapter. On Linux, add your user to the <code>dialout</code> group.</p>
         </li>
         <li>
-          <h3>Erase and flash</h3>
-          <p>On a first install, or when replacing other firmware such as Tasmota or ESPHome, tick <em>Erase device</em>. This removes old settings that could confuse the bridge. Flashing takes about a minute.</p>
+          <h3>Erase and install</h3>
+          <p>On a first install, or when you replace other firmware, select <strong>Erase device</strong>. This removes old settings that could interfere with the bridge. Installing takes about a minute.</p>
         </li>
         <li>
           <h3>Restart the board</h3>
-          <p>On a WT32-ETH01, remove the <code>IO0</code> jumper and power-cycle the board (or pulse <code>EN</code>). Boards with USB restart by themselves.</p>
+          <p>On a WT32-ETH01, remove the <code>IO0</code> jumper and turn the board off and on again (or briefly connect <code>EN</code> to <code>GND</code>). Boards with USB restart automatically.</p>
         </li>
       </ol>
     </div>
@@ -317,45 +318,46 @@
 
   <section id="setup">
     <div class="wrap">
-      <h2>After flashing</h2>
-      <p class="sub">A new bridge has no Wi-Fi settings, so it offers two ways in.</p>
+      <h2>Set up the bridge</h2>
+      <p class="sub">If you didn't enter your Wi-Fi network in the installer, connect to the bridge in one of these ways.</p>
       <div class="grid">
         <div class="card">
           <h3>Over Wi-Fi</h3>
-          <p>Join the setup network <code>wifi-bridge-xxxxxx</code> from a phone or laptop (the suffix comes from the board's MAC address). A captive portal opens; if it doesn't, browse to <a href="http://192.168.4.1/">http://192.168.4.1</a>.</p>
+          <p>From a phone or laptop, join the setup network <code>wifi-bridge-xxxxxx</code>. The suffix comes from the board's MAC address (its hardware address). The setup page opens automatically. If it doesn't, go to <a href="http://192.168.4.1/">http://192.168.4.1</a>.</p>
         </div>
         <div class="card">
           <h3>Over Ethernet</h3>
-          <p>Plug a computer into the board's Ethernet port. It gets an address by DHCP; browse to <a href="http://192.168.5.1/">http://192.168.5.1</a> for the same setup page.</p>
+          <p>Plug a computer into the board's Ethernet port. The computer gets an address automatically. To open the same setup page, go to <a href="http://192.168.5.1/">http://192.168.5.1</a>.</p>
         </div>
         <div class="card">
           <h3>Then</h3>
-          <p>Choose your Wi-Fi network, enter its password and, if needed, select your board type. The bridge joins your network; plug in the wired device and it appears on your LAN.</p>
+          <p>Choose your Wi-Fi network, enter its password, and accept the suggested management address: the fixed IP address of the bridge's page. If your board isn't a WT32-ETH01, choose it on the <strong>Ethernet</strong> tab afterward. Plug in the wired device, and it appears on your network.</p>
         </div>
       </div>
 
-      <h3 style="margin-top:34px">Updating</h3>
+      <h3 style="margin-top:34px">Update and troubleshoot</h3>
       <details>
-        <summary>Which file do I use?</summary>
+        <summary>Which file should I use?</summary>
         <ul>
-          <li><code>wifi-bridge-&lt;version&gt;.ota.bin</code>: the application only. Upload it in the device's web interface, or through Tasmota safeboot. Use this for updates.</li>
-          <li><code>wifi-bridge-&lt;version&gt;.factory.bin</code>: the complete image (bootloader, partition table, application) to flash at offset <code>0x0</code> over serial. This page installs it for you.</li>
-          <li><code>wifi-bridge-&lt;version&gt;.elf</code> (on the GitHub release): debug symbols for decoding crash backtraces.</li>
+          <li><code>wifi-bridge-&lt;version&gt;.ota.bin</code>: The application only. Use this file for firmware updates. Install it on the <strong>Firmware</strong> tab of the bridge's page, or from the safeboot firmware.</li>
+          <li><code>wifi-bridge-&lt;version&gt;.safeboot.bin</code>: The safeboot firmware, a small recovery firmware for boards with a single firmware slot. Install it once on the <strong>Firmware</strong> tab of the bridge's page.</li>
+          <li><code>wifi-bridge-&lt;version&gt;.factory.bin</code>: The complete image (bootloader, partition table, and application), flashed at offset <code>0x0</code> over serial. This page installs it for you.</li>
+          <li><code>wifi-bridge-&lt;version&gt;.elf</code> (on the GitHub release): Debug symbols for decoding crash backtraces.</li>
         </ul>
       </details>
       <details>
-        <summary>Flashing from the command line</summary>
-        <p>With <a href="https://github.com/espressif/esptool">esptool</a> installed and the board in download mode:</p>
+        <summary>Install from the command line</summary>
+        <p>Install <a href="https://github.com/espressif/esptool">esptool</a>, put the board in download mode, and run:</p>
         <p><code>esptool.py --chip esp32 write_flash 0x0 wifi-bridge-&lt;version&gt;.factory.bin</code></p>
-        <p>Add <code>erase_flash</code> as a separate command first to start from a clean flash.</p>
+        <p>To start from an empty flash, run <code>erase_flash</code> as a separate command first.</p>
       </details>
       <details>
         <summary>The installer can't connect to the board</summary>
         <ul>
-          <li>Check that TX and RX are crossed (adapter TX to board RX0).</li>
-          <li>WT32-ETH01: make sure <code>IO0</code> was connected to <code>GND</code> <em>before</em> the reset, and that the adapter uses 3.3 V logic.</li>
-          <li>Close other programs using the port, such as a serial monitor or another browser tab.</li>
-          <li>Try a shorter cable or a different USB port, and power the board from 5 V rather than the adapter's 3.3 V pin.</li>
+          <li>Check that TX and RX are crossed: adapter TX to board <code>RX0</code>.</li>
+          <li>WT32-ETH01: Make sure that <code>IO0</code> was connected to <code>GND</code> <em>before</em> the reset, and that the adapter uses 3.3 V logic.</li>
+          <li>Close other programs that use the port, such as a serial monitor or another browser tab.</li>
+          <li>Try a shorter cable or a different USB port. Power the board from 5 V instead of the adapter's 3.3 V pin.</li>
         </ul>
       </details>
     </div>
@@ -364,8 +366,8 @@
 
 <footer>
   <div class="wrap">
-    <span>WiFi Bridge is open source under the Apache License 2.0.</span>
-    <span><a href="#" data-link="repo">Source</a> · <a href="#" data-link="releases">All releases</a> · <a href="#" data-link="issues">Report a problem</a> · Installer powered by <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools</a></span>
+    <span>WiFi Bridge is open source and licensed under the Apache License 2.0.</span>
+    <span><a href="#" data-link="repo">Source</a> · <a href="#" data-link="releases">All releases</a> · <a href="#" data-link="issues">Report a problem</a></span>
   </div>
 </footer>
 
@@ -415,7 +417,7 @@
       .then(function (m) {
         const version = String(m.version || "");
         if (!/^\d+\.\d+\.\d+/.test(version)) {
-          noRelease("No firmware release has been published yet");
+          noRelease("No firmware release is available yet");
           return;
         }
         const tag = "v" + version;
@@ -428,7 +430,7 @@
         applyLinks();
       })
       .catch(function (e) {
-        noRelease("Could not load firmware information (" + e.message + ")");
+        noRelease("Couldn't load firmware information (" + e.message + ")");
       });
   })();
 </script>
